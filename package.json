@@ -1,0 +1,42 @@
+{
+  "name": "sivu",
+  "version": "0.1.0",
+  "description": "Pagination made simple",
+  "main": "index.js",
+  "scripts": {
+    "test": "ts-mocha --paths src/**/*.test.ts",
+    "coverage": "nyc npm run test",
+    "eslint": "eslint . --ext .js,.jsx,.ts,.tsx"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artus/sivu.git"
+  },
+  "keywords": [
+    "pagination",
+    "paging",
+    "query",
+    "querystring"
+  ],
+  "author": "Artus Vranken",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/artus/sivu/issues"
+  },
+  "homepage": "https://github.com/artus/sivu#readme",
+  "devDependencies": {
+    "@types/mocha": "^8.0.3",
+    "@types/node": "^14.14.6",
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
+    "eslint": "^7.12.1",
+    "mocha": "^8.2.0",
+    "nyc": "^15.1.0",
+    "ts-mocha": "^8.0.0",
+    "typescript": "^4.0.5"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.162",
+    "lodash": "^4.17.20"
+  }
+}
