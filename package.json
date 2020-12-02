@@ -4,6 +4,12 @@
   "description": "Pagination made simple",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "/dist/*.js",
+    "/dist/*.d.ts",
+    "/dist/**/*.js",
+    "/dist/**/*.d.ts"
+  ],
   "scripts": {
     "compile": "tsc",
     "test": "ts-mocha --paths src/**/*.test.ts",
