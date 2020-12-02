@@ -1,4 +1,4 @@
-name: "bump version, build and deploy"
+name: "build, bump version and deploy"
 on: 
   push:
     branches:
