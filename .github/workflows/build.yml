@@ -1,8 +1,9 @@
-name: build
+name: "Lint, test and compile"
 
 on: 
   push:
     branches:
+      - "*"
       - "!master"
 
 jobs:
