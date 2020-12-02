@@ -1,6 +1,6 @@
 name: "bump version, build and deploy"
 on: 
-  push
+  push:
     branches:
       - master
 
