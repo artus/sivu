@@ -4,7 +4,7 @@ import { Ordering, QueryOptions } from "..";
 import { ObjectValidator } from "../validation/ObjectValidator";
 import { StringValidator } from "../validation/StringValidator";
 import { Page } from '../pagination/Page';
-import { CAN_NOT_BE_NULL } from "../ErrorMessages";
+import { CAN_NOT_BE_EMPTY, CAN_NOT_BE_NULL } from "../ErrorMessages";
 
 /**
  * The SivuDeserializer can be used to deserliaze sivu objects from arbitrary objects.
@@ -55,7 +55,7 @@ export class SivuDeserializer {
    * @param {string} order - The order as a string value. Can be either 'asc' or 'desc'.
    */
   public static ordering(order: string): Ordering {
-    StringValidator.checkNotNullOrEmpty(order, 'Order can not be empty.');
+    StringValidator.checkNotNullOrEmpty(order, CAN_NOT_BE_EMPTY('Order'));
 
     switch (order) {
       case Ordering.ASCENDING:
