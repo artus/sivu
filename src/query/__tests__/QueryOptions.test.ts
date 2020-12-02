@@ -14,6 +14,7 @@ describe('PageOptions', () => {
     it('Throws an error when supplying invalid parameters', () => {
       assert.throws(() => new QueryOptions(-1, validPageSize, validOrder, validSortBy), new Error(CAN_NOT_BE_NEGATIVE('Page number')));
       assert.throws(() => new QueryOptions(validPageNumber, -1, validOrder, validSortBy), new Error(CAN_NOT_BE_NEGATIVE('Page size')));
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       assert.throws(() => new QueryOptions(validPageNumber, validPageSize, (null as any), validSortBy), new Error(CAN_NOT_BE_NULL('Order')));
     });
 

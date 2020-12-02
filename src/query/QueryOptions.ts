@@ -5,11 +5,35 @@ import { Ordering } from "./Ordering";
 
 export class QueryOptions {
 
+  /**
+   * The page number of the requested page.
+   */
   readonly pageNumber: number;
+
+  /**
+   * The size of the requested page.
+   */
   readonly pageSize: number;
+
+  /**
+   * The ordering of the query.
+   */
   readonly order: Ordering;
+
+  /**
+   * The field(s) that should be sorted by.
+   */
   readonly sortBy: string;
 
+  /**
+   * @constructor Create a new QueryOptions object.
+   * @classdesc QueryOptions reflects the options that should be send to an API when requesting pages.
+   * 
+   * @param {number} pageNumber - The page number of the requested page.
+   * @param {number} pageSize - The size of the requested page.
+   * @param {Ordering} [order=ASCENDING] - The ordering of the query.
+   * @param {string} [sortBy=''] - The field(s) that should be sorted by.
+   */
   constructor(
     pageNumber: number,
     pageSize: number,
@@ -22,6 +46,12 @@ export class QueryOptions {
     this.sortBy = sortBy;
   }
 
+  /**
+   * Stringify this QueryOptions so that it can be used in a URL.
+   * 
+   * @param {boolean} [includePrefix=true] - Whether the '?' prefix should be included or not.
+   * @returns {string} The serialized version of these QueryOptions that can be used in a URL. e.g. '?pageNumber=1&pageSize=15&order=asc&sortBy=name'.
+   */
   public getQueryString(includePrefix = true) : string {
     let queryString = `pageNumber=${this.pageNumber}&pageSize=${this.pageSize}&order=${this.order}`;
 

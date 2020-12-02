@@ -2,11 +2,14 @@
   "name": "sivu",
   "version": "0.1.0",
   "description": "Pagination made simple",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "compile": "tsc",
     "test": "ts-mocha --paths src/**/*.test.ts",
     "coverage": "nyc npm run test",
-    "eslint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "build": "npm run eslint && npm run coverage && npm run compile"
   },
   "repository": {
     "type": "git",
