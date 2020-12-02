@@ -1,0 +1,50 @@
+name: "build, bump version and deploy"
+on: 
+  push:
+    branches:
+      - master
+
+jobs:
+
+  build-bump--deploy:
+    name: "Bump version"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout source code"
+        uses: "actions/checkout@v2"
+        with:
+          ref: ${{ github.ref }}
+
+      - name: "Setup Node.js"
+        uses: "actions/setup-node@v1"
+        with:
+          node-version: 12
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: npm install
+
+      - name: "Build source"
+        run: npm build
+
+      - name: "show package.json"
+        run: cat ./package.json
+
+      - name: "Automated Version Bump"
+        id: version-bump
+        uses: "phips28/gh-action-bump-version@master"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "show package.json"
+        run: cat ./package.json
+
+      - name: 'Output Step'
+        env:
+          NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
+        run: echo "new tag $NEW_TAG"
+
+      - name: "Publish new version"
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
