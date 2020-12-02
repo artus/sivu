@@ -25,7 +25,7 @@ jobs:
       - run: npm install
 
       - name: "Build source"
-        run: npm build
+        run: npm run build
 
       - name: "show package.json"
         run: cat ./package.json
