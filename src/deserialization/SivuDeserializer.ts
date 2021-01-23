@@ -24,12 +24,13 @@ export class SivuDeserializer {
     ObjectValidator.checkNotNull(body, CAN_NOT_BE_NULL('Page JSON'));
 
     const values = body.values.map(valueDeserializer);
+    const queryOptions = SivuDeserializer.queryOptions(body.queryOptions);
 
     return new Page(
       values,
-      body.pageNumber,
       body.totalPages,
-      body.totalSize
+      body.totalSize,
+      queryOptions
     );
   }
 

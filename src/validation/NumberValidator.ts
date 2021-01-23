@@ -16,4 +16,11 @@ export class NumberValidator {
     }
     return value;
   }
+
+  public static checkNotLessThan(min: number, value: number, errorMessage: string): number {
+    if (value < min) {
+      throw new Error(errorMessage);
+    }
+    return value;
+  }
 }

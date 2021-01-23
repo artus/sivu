@@ -10,19 +10,27 @@ describe('SivuDeserializer', () => {
 
     it('Should return the raw values when no valueDeserializer is supplied', () => {
 
+      const serializedQueryOptions = {
+        pageNumber: 1,
+        pageSize: 1,
+        order: 'asc',
+        sortBy: 'name',
+        search: 'test search'
+      }
+
       const serializedPage = {
         values: ["1", "2", "3"],
-        pageNumber: 1,
         size: 3,
         totalPages: 10,
-        totalSize: 30
+        totalSize: 30,
+        queryOptions: serializedQueryOptions
       };
 
       const deserializedPage = SivuDeserializer.page(serializedPage);
       const notSameValues = serializedPage.values.filter(value => !deserializedPage.values.includes(value));
 
       assert.ok(notSameValues.length === 0);
-      assert.strictEqual(deserializedPage.pageNumber, serializedPage.pageNumber);
+      assert.strictEqual(deserializedPage.pageNumber, serializedPage.queryOptions.pageNumber);
       assert.strictEqual(deserializedPage.size, serializedPage.size);
       assert.strictEqual(deserializedPage.totalPages, serializedPage.totalPages);
       assert.strictEqual(deserializedPage.totalSize, serializedPage.totalSize);
@@ -30,12 +38,20 @@ describe('SivuDeserializer', () => {
 
     it('Should return the deserialized values when a valueDeserializer is supplied', () => {
 
+      const serializedQueryOptions = {
+        pageNumber: 1,
+        pageSize: 1,
+        order: 'asc',
+        sortBy: 'name',
+        search: 'test search'
+      }
+
       const serializedPage = {
         values: ["1", "2", "3"],
-        pageNumber: 1,
         size: 3,
         totalPages: 10,
-        totalSize: 30
+        totalSize: 30,
+        queryOptions: serializedQueryOptions
       };
 
       const valueDeserializer = (value: string) => value + "-deserialized";
@@ -45,7 +61,7 @@ describe('SivuDeserializer', () => {
       const notSameValues = deserializedValues.filter(value => !deserializedPage.values.includes(value));
 
       assert.ok(notSameValues.length === 0);
-      assert.strictEqual(deserializedPage.pageNumber, serializedPage.pageNumber);
+      assert.strictEqual(deserializedPage.pageNumber, serializedPage.queryOptions.pageNumber);
       assert.strictEqual(deserializedPage.size, serializedPage.size);
       assert.strictEqual(deserializedPage.totalPages, serializedPage.totalPages);
       assert.strictEqual(deserializedPage.totalSize, serializedPage.totalSize);
